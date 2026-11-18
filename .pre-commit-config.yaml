@@ -20,4 +20,5 @@ repos:
     rev: v1.5.0
     hooks:
       - id: detect-secrets
-        exclude: ^uv\.lock$
+        # uv.lock hashes and Alembic revision ids look random but are not secrets
+        exclude: ^(uv\.lock|migrations/versions/.*)$

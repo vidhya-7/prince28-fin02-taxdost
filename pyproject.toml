@@ -8,8 +8,11 @@ authors = [
 ]
 requires-python = ">=3.12"
 dependencies = [
+    "alembic>=1.20.1",
+    "asyncpg>=0.32.0",
     "fastapi>=0.163.1",
     "pydantic-settings>=2.16.3",
+    "sqlalchemy[asyncio]>=2.1.9",
     "uvicorn[standard]>=0.54.0",
 ]
 
@@ -28,6 +31,9 @@ dev = [
 ]
 
 [tool.ruff]
+# Alembic writes these files; we review them but don't restyle them.
+extend-exclude = ["migrations/versions"]
+
 line-length = 100
 target-version = "py312"
 
