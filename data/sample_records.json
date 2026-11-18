@@ -1,12 +1,14 @@
+
 [
   {
     "id": "001",
     "act": "Income-tax Act, 1961",
     "section": "10(13A)",
     "old_section": "",
-    "topic": "House Rent Allowance (HRA) exemption for an employee who pays rent for a home that the employee does not own; available under the old tax regime subject to conditions",
+    "topic": "House Rent Allowance (HRA) exemption for an employee who pays rent for a home that the employee does not own; available under the old tax regime subject to conditions(updated)",
     "assessment_or_tax_year": "FY 2025-26 / AY 2026-27",
-    "limit_amount": "Least of: actual HRA received; rent paid minus 10% of salary; 50% of salary for Delhi, Mumbai, Kolkata or Chennai, otherwise 40% of salary"
+    "limit_amount": "Least of: actual HRA received; rent paid minus 10% of salary; 50% of salary for Delhi, Mumbai, Kolkata or Chennai, otherwise 40% of salary",
+    "source_url": "https://www.indiacode.nic.in/bitstream/123456789/2435/1/a1961-43.pdf"
   },
   {
     "id": "002",
@@ -15,7 +17,8 @@
     "old_section": "",
     "topic": "Standard deduction from salary or pension income",
     "assessment_or_tax_year": "FY 2025-26 / AY 2026-27",
-    "limit_amount": "Up to ₹50,000 under the old tax regime or ₹75,000 under the new tax regime, limited to the amount of salary where lower"
+    "limit_amount": "Up to ₹50,000 under the old tax regime or ₹75,000 under the new tax regime, limited to the amount of salary where lower",
+    "source_url": "https://www.indiacode.nic.in/bitstream/123456789/2435/1/a1961-43.pdf"
   },
   {
     "id": "003",
@@ -24,7 +27,8 @@
     "old_section": "",
     "topic": "Deduction for employment tax or professional tax actually paid by the employee; available under the old tax regime and not deductible under the new tax regime",
     "assessment_or_tax_year": "FY 2025-26 / AY 2026-27",
-    "limit_amount": "Actual professional tax paid during the year; no separate fixed rupee cap in this provision; not available under section 115BAC new regime"
+    "limit_amount": "Actual professional tax paid during the year; no separate fixed rupee cap in this provision; not available under section 115BAC new regime",
+    "source_url": "https://www.indiacode.nic.in/bitstream/123456789/2435/1/a1961-43.pdf"
   },
   {
     "id": "004",
@@ -33,7 +37,8 @@
     "old_section": "",
     "topic": "Deduction for interest paid on borrowed capital for a house property",
     "assessment_or_tax_year": "FY 2025-26 / AY 2026-27",
-    "limit_amount": "For a qualifying self-occupied property under the old regime, up to ₹2,00,000; specified cases are limited to ₹30,000. Let-out property and new-regime treatment have separate rules"
+    "limit_amount": "For a qualifying self-occupied property under the old regime, up to ₹2,00,000; specified cases are limited to ₹30,000. Let-out property and new-regime treatment have separate rules",
+    "source_url": "https://www.indiacode.nic.in/bitstream/123456789/2435/1/a1961-43.pdf"
   },
   {
     "id": "005",
@@ -42,7 +47,8 @@
     "old_section": "",
     "topic": "Deduction for eligible payments and investments such as life insurance premium, provident fund, tuition fees, National Savings Certificates and eligible housing-loan principal repayment; old regime only",
     "assessment_or_tax_year": "FY 2025-26 / AY 2026-27",
-    "limit_amount": "Part of the combined ₹1,50,000 limit shared with sections 80CCC and 80CCD(1)"
+    "limit_amount": "Part of the combined ₹1,50,000 limit shared with sections 80CCC and 80CCD(1)",
+    "source_url": "https://www.indiacode.nic.in/bitstream/123456789/2435/1/a1961-43.pdf"
   },
   {
     "id": "006",
@@ -51,7 +57,8 @@
     "old_section": "",
     "topic": "Deduction for qualifying contribution to an annuity pension plan of LIC or another insurer; old regime only",
     "assessment_or_tax_year": "FY 2025-26 / AY 2026-27",
-    "limit_amount": "Included in the combined ₹1,50,000 limit shared with sections 80C and 80CCD(1)"
+    "limit_amount": "Included in the combined ₹1,50,000 limit shared with sections 80C and 80CCD(1)",
+    "source_url": "https://www.indiacode.nic.in/bitstream/123456789/2435/1/a1961-43.pdf"
   },
   {
     "id": "007",
@@ -60,7 +67,8 @@
     "old_section": "",
     "topic": "Deduction for an individual's own eligible contribution to the National Pension System (NPS); old regime only",
     "assessment_or_tax_year": "FY 2025-26 / AY 2026-27",
-    "limit_amount": "Employee: up to 10% of salary; self-employed: up to 20% of gross total income; also subject to the combined ₹1,50,000 limit with sections 80C and 80CCC"
+    "limit_amount": "Employee: up to 10% of salary; self-employed: up to 20% of gross total income; also subject to the combined ₹1,50,000 limit with sections 80C and 80CCC",
+    "source_url": "https://www.indiacode.nic.in/bitstream/123456789/2435/1/a1961-43.pdf"
   },
   {
     "id": "008",
@@ -69,7 +77,8 @@
     "old_section": "",
     "topic": "Additional deduction for an individual's eligible own contribution to NPS, separate from the section 80CCD(1) deduction; old regime only",
     "assessment_or_tax_year": "FY 2025-26 / AY 2026-27",
-    "limit_amount": "Additional deduction up to ₹50,000"
+    "limit_amount": "Additional deduction up to ₹50,000",
+    "source_url": "https://www.indiacode.nic.in/bitstream/123456789/2435/1/a1961-43.pdf"
   },
   {
     "id": "009",
@@ -78,7 +87,8 @@
     "old_section": "",
     "topic": "Deduction for an employer's eligible contribution to the employee's NPS account; available under both tax regimes subject to conditions",
     "assessment_or_tax_year": "FY 2025-26 / AY 2026-27",
-    "limit_amount": "Up to 14% of salary under the new regime; under the old regime, generally 10% for non-government employers and 14% for Central or State Government employers"
+    "limit_amount": "Up to 14% of salary under the new regime; under the old regime, generally 10% for non-government employers and 14% for Central or State Government employers",
+    "source_url": "https://www.indiacode.nic.in/bitstream/123456789/2435/1/a1961-43.pdf"
   },
   {
     "id": "010",
@@ -87,7 +97,8 @@
     "old_section": "",
     "topic": "Deduction for eligible health-insurance premiums and preventive health check-ups for self, spouse, dependent children and parents; old regime only",
     "assessment_or_tax_year": "FY 2025-26 / AY 2026-27",
-    "limit_amount": "Generally up to ₹25,000 for self/family and ₹25,000 for parents; each limit can increase to ₹50,000 where the relevant insured person is a senior citizen. Preventive check-up up to ₹5,000 is included within the limit"
+    "limit_amount": "Generally up to ₹25,000 for self/family and ₹25,000 for parents; each limit can increase to ₹50,000 where the relevant insured person is a senior citizen. Preventive check-up up to ₹5,000 is included within the limit",
+    "source_url": "https://www.indiacode.nic.in/bitstream/123456789/2435/1/a1961-43.pdf"
   },
   {
     "id": "011",
@@ -96,7 +107,8 @@
     "old_section": "",
     "topic": "Flat deduction for eligible maintenance, medical treatment, training or rehabilitation of a dependent person with disability, subject to conditions; old regime only",
     "assessment_or_tax_year": "FY 2025-26 / AY 2026-27",
-    "limit_amount": "₹75,000; ₹1,25,000 for a dependent with severe disability"
+    "limit_amount": "₹75,000; ₹1,25,000 for a dependent with severe disability",
+    "source_url": "https://www.indiacode.nic.in/bitstream/123456789/2435/1/a1961-43.pdf"
   },
   {
     "id": "012",
@@ -105,7 +117,8 @@
     "old_section": "",
     "topic": "Deduction for eligible expenditure on treatment of specified diseases for self or a qualifying dependent; old regime only",
     "assessment_or_tax_year": "FY 2025-26 / AY 2026-27",
-    "limit_amount": "Up to ₹40,000; up to ₹1,00,000 for a senior citizen, subject to conditions and reductions for reimbursements"
+    "limit_amount": "Up to ₹40,000; up to ₹1,00,000 for a senior citizen, subject to conditions and reductions for reimbursements",
+    "source_url": "https://www.indiacode.nic.in/bitstream/123456789/2435/1/a1961-43.pdf"
   },
   {
     "id": "013",
@@ -114,7 +127,8 @@
     "old_section": "",
     "topic": "Deduction for interest paid on an eligible education loan for higher studies of self or a qualifying relative; principal repayment is not deductible under this section; old regime only",
     "assessment_or_tax_year": "FY 2025-26 / AY 2026-27",
-    "limit_amount": "Eligible interest actually paid, with no fixed rupee ceiling, for up to 8 consecutive assessment years beginning with the year interest repayment starts or until interest is fully paid, whichever is earlier"
+    "limit_amount": "Eligible interest actually paid, with no fixed rupee ceiling, for up to 8 consecutive assessment years beginning with the year interest repayment starts or until interest is fully paid, whichever is earlier",
+    "source_url": "https://www.indiacode.nic.in/bitstream/123456789/2435/1/a1961-43.pdf"
   },
   {
     "id": "014",
@@ -123,7 +137,8 @@
     "old_section": "",
     "topic": "Deduction for donations to specified funds and approved charitable institutions; deduction percentage and qualifying limits depend on the recipient; old regime only",
     "assessment_or_tax_year": "FY 2025-26 / AY 2026-27",
-    "limit_amount": "Generally 50% or 100% of eligible donation, with or without qualifying limits depending on the approved fund or institution; cash donations above ₹2,000 are not eligible"
+    "limit_amount": "Generally 50% or 100% of eligible donation, with or without qualifying limits depending on the approved fund or institution; cash donations above ₹2,000 are not eligible",
+    "source_url": "https://www.indiacode.nic.in/bitstream/123456789/2435/1/a1961-43.pdf"
   },
   {
     "id": "015",
@@ -132,7 +147,8 @@
     "old_section": "",
     "topic": "Deduction for rent paid by an individual who does not receive HRA, subject to residence and ownership conditions and filing Form 10BA; old regime only",
     "assessment_or_tax_year": "FY 2025-26 / AY 2026-27",
-    "limit_amount": "Least of: rent paid minus 10% of adjusted total income; 25% of adjusted total income; or ₹5,000 per month"
+    "limit_amount": "Least of: rent paid minus 10% of adjusted total income; 25% of adjusted total income; or ₹5,000 per month",
+    "source_url": "https://www.indiacode.nic.in/bitstream/123456789/2435/1/a1961-43.pdf"
   },
   {
     "id": "016",
@@ -141,7 +157,8 @@
     "old_section": "",
     "topic": "Deduction for eligible interest earned on savings accounts by an individual or HUF other than a senior citizen; old regime only",
     "assessment_or_tax_year": "FY 2025-26 / AY 2026-27",
-    "limit_amount": "Up to ₹10,000; applies to qualifying savings-account interest, not fixed/time-deposit interest"
+    "limit_amount": "Up to ₹10,000; applies to qualifying savings-account interest, not fixed/time-deposit interest",
+    "source_url": "https://www.indiacode.nic.in/bitstream/123456789/2435/1/a1961-43.pdf"
   },
   {
     "id": "017",
@@ -150,7 +167,8 @@
     "old_section": "",
     "topic": "Deduction for eligible interest on deposits earned by a resident senior citizen; old regime only",
     "assessment_or_tax_year": "FY 2025-26 / AY 2026-27",
-    "limit_amount": "Up to ₹50,000 on qualifying interest from deposits with banks, co-operative banks or post offices"
+    "limit_amount": "Up to ₹50,000 on qualifying interest from deposits with banks, co-operative banks or post offices",
+    "source_url": "https://www.indiacode.nic.in/bitstream/123456789/2435/1/a1961-43.pdf"
   },
   {
     "id": "018",
@@ -159,7 +177,8 @@
     "old_section": "",
     "topic": "Flat deduction for a resident individual taxpayer certified as a person with disability; this concerns the taxpayer's own disability, unlike section 80DD for a dependent; old regime only",
     "assessment_or_tax_year": "FY 2025-26 / AY 2026-27",
-    "limit_amount": "₹75,000; ₹1,25,000 for severe disability"
+    "limit_amount": "₹75,000; ₹1,25,000 for severe disability",
+    "source_url": "https://www.indiacode.nic.in/bitstream/123456789/2435/1/a1961-43.pdf"
   },
   {
     "id": "019",
@@ -168,7 +187,8 @@
     "old_section": "",
     "topic": "Tax rebate for an eligible resident individual; rebate limits differ between the old and new tax regimes for AY 2026-27",
     "assessment_or_tax_year": "FY 2025-26 / AY 2026-27",
-    "limit_amount": "New regime: up to ₹60,000 if total income does not exceed ₹12,00,000; old regime: up to ₹12,500 if total income does not exceed ₹5,00,000; subject to statutory conditions"
+    "limit_amount": "New regime: up to ₹60,000 if total income does not exceed ₹12,00,000; old regime: up to ₹12,500 if total income does not exceed ₹5,00,000; subject to statutory conditions",
+    "source_url": "https://www.indiacode.nic.in/bitstream/123456789/2435/1/a1961-43.pdf"
   },
   {
     "id": "020",
@@ -177,6 +197,7 @@
     "old_section": "",
     "topic": "Provision governing the concessional new tax regime, which is the default regime for eligible individuals; eligible taxpayers may opt for the old regime subject to applicable rules",
     "assessment_or_tax_year": "FY 2025-26 / AY 2026-27",
-    "limit_amount": "For individuals below 60: new-regime slabs are nil up to ₹4,00,000; 5% from ₹4,00,001–₹8,00,000; 10% from ₹8,00,001–₹12,00,000; 15% from ₹12,00,001–₹16,00,000; 20% from ₹16,00,001–₹20,00,000; 25% from ₹20,00,001–₹24,00,000; and 30% above ₹24,00,000"
+    "limit_amount": "For individuals below 60: new-regime slabs are nil up to ₹4,00,000; 5% from ₹4,00,001–₹8,00,000; 10% from ₹8,00,001–₹12,00,000; 15% from ₹12,00,001–₹16,00,000; 20% from ₹16,00,001–₹20,00,000; 25% from ₹20,00,001–₹24,00,000; and 30% above ₹24,00,000",
+    "source_url": "https://www.indiacode.nic.in/bitstream/123456789/2435/1/a1961-43.pdf"
   }
 ]

@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Response
 
-from taxdost.api.deps import SettingsDep, StoreDep
+from taxdost.api.deps import DbCheckDep, SettingsDep
 
 router = APIRouter(tags=["health"])
 
@@ -12,9 +12,9 @@ def health(settings: SettingsDep) -> dict[str, str]:
 
 
 @router.get("/ready")
-def ready(store: StoreDep, response: Response) -> dict:
+async def ready(db_ok: DbCheckDep, response: Response) -> dict:
     """Readiness: can this instance serve traffic right now?"""
-    checks = {"records_loaded": store.ready}
+    checks = {"database": db_ok}
     ok = all(checks.values())
     if not ok:
         response.status_code = 503

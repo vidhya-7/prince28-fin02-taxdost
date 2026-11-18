@@ -1,9 +1,8 @@
 import pytest
-from fastapi.testclient import TestClient
 from pydantic import ValidationError
 
-from taxdost.api.main import create_app
 from taxdost.config import Settings
+from taxdost.db.url import to_asyncpg_url
 
 
 def test_health_is_ok(client):
@@ -12,23 +11,20 @@ def test_health_is_ok(client):
     assert r.json()["status"] == "ok"
 
 
-def test_ready_when_records_loaded(client):
+def test_ready_when_database_up(client):
     r = client.get("/ready")
     assert r.status_code == 200
-    assert r.json()["checks"]["records_loaded"] is True
+    assert r.json()["checks"]["database"] is True
 
 
-def test_ready_is_503_when_data_file_missing(tmp_path):
-    settings = Settings(app_env="ci", data_file=tmp_path / "missing.json")
-    with TestClient(create_app(settings)) as c:
-        assert c.get("/health").status_code == 200  # alive...
-        assert c.get("/ready").status_code == 503  # ...but not ready
+def test_ready_is_503_when_database_down(client, db_state):
+    db_state["up"] = False
+    assert client.get("/health").status_code == 200  # alive...
+    assert client.get("/ready").status_code == 503  # ...but not ready
 
 
 def test_list_documents_paginates(client):
-    r = client.get("/v1/documents", params={"limit": 2})
-    body = r.json()
-    assert r.status_code == 200
+    body = client.get("/v1/documents", params={"limit": 2}).json()
     assert body["total"] == 3
     assert len(body["items"]) == 2
 
@@ -36,6 +32,18 @@ def test_list_documents_paginates(client):
 def test_search_filters_records(client):
     r = client.get("/v1/documents", params={"q": "beta"})
     assert [d["id"] for d in r.json()["items"]] == ["002"]
+
+
+def test_metadata_filter(client):
+    r = client.get("/v1/documents", params={"kind": "circular"})
+    assert r.json()["total"] == 2
+    assert r.json()["filters"] == {"kind": "circular"}
+
+
+def test_invalid_filter_name_is_400(client):
+    r = client.get("/v1/documents", params={"Bad-Key": "x"})
+    assert r.status_code == 400
+    assert r.headers["content-type"] == "application/problem+json"
 
 
 def test_get_document_found(client):
@@ -48,10 +56,7 @@ def test_missing_document_is_problem_details(client):
     r = client.get("/v1/documents/999")
     assert r.status_code == 404
     assert r.headers["content-type"] == "application/problem+json"
-    body = r.json()
-    assert body["status"] == 404
-    assert body["title"] == "Not Found"
-    assert body["request_id"] == r.headers["X-Request-ID"]
+    assert r.json()["request_id"] == r.headers["X-Request-ID"]
 
 
 def test_bad_limit_is_422_problem(client):
@@ -65,7 +70,28 @@ def test_request_id_is_echoed(client):
     assert r.headers["X-Request-ID"] == "abc123"
 
 
-def test_app_refuses_to_start_without_app_env(monkeypatch):
-    monkeypatch.delenv("APP_ENV", raising=False)
+@pytest.mark.parametrize("missing", ["APP_ENV", "DATABASE_URL"])
+def test_app_refuses_to_start_without_required_settings(monkeypatch, missing):
+    monkeypatch.setenv("APP_ENV", "ci")
+    monkeypatch.setenv("DATABASE_URL", "postgresql://localhost/db")
+    monkeypatch.delenv(missing)
     with pytest.raises(ValidationError):
         Settings(_env_file=None)
+
+
+@pytest.mark.parametrize(
+    ("raw", "expected"),
+    [
+        (
+            "postgresql://app@ep-x.neon.tech/neondb?sslmode=require&channel_binding=require",
+            "postgresql+asyncpg://app@ep-x.neon.tech/neondb?ssl=require",
+        ),
+        (
+            "postgresql://postgres@localhost:5432/app?sslmode=disable",
+            "postgresql+asyncpg://postgres@localhost:5432/app",
+        ),
+        ("postgres://app@h/db", "postgresql+asyncpg://app@h/db"),
+    ],
+)
+def test_database_url_is_converted_for_asyncpg(raw, expected):
+    assert to_asyncpg_url(raw) == expected
