@@ -1,4 +1,4 @@
-﻿.PHONY: dev lint test test-integration cov up down logs reset
+.PHONY: dev lint test test-integration cov up down logs reset
 
 dev:
 	uv run poe dev
