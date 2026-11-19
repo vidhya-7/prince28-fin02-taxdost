@@ -89,3 +89,109 @@ Using an index would add extra overhead compared with reading this small table d
 **When would it switch to the GIN index?**
 
 When the table grows and PostgreSQL estimates that using the GIN index is more efficient than scanning the entire table.
+
+## D04 · Docker, testing, and quality gates
+
+### Docker Compose services
+
+The Docker Compose environment contains:
+
+| Service | Purpose |
+|---|---|
+| `db` | PostgreSQL 17 with pgvector |
+| `redis` | Redis 7 |
+| `migrate` | Applies Alembic migrations and loads sample data |
+| `api` | Runs the FastAPI application |
+
+The API waits for PostgreSQL and Redis health checks and for the migration service to complete successfully.
+
+Useful commands:
+
+```powershell
+uv run poe up
+docker compose ps
+uv run poe logs
+uv run poe down
+```
+
+To remove the database volume and reset local database state:
+
+```powershell
+uv run poe reset
+```
+
+**Warning:** `reset` removes the PostgreSQL volume and its stored data.
+
+### Test organization
+
+Tests are separated by purpose:
+
+- `tests/unit/` — unit and API tests.
+- `tests/integration/` — tests that require the PostgreSQL test database.
+- `tests/integration/conftest.py` — integration-test fixtures.
+
+Run the test groups separately:
+
+```powershell
+uv run poe test
+uv run poe test-integration
+```
+
+### Coverage verification
+
+Command:
+
+```powershell
+$env:TEST_DATABASE_URL = "postgresql://<username>:<password>@localhost:5433/app_test"
+uv run poe cov
+Remove-Item Env:TEST_DATABASE_URL
+```
+
+Recorded result:
+
+```text
+23 passed
+Total coverage: 92%
+```
+
+### Code quality checks
+
+Command:
+
+```powershell
+uv run poe lint
+```
+
+Recorded result:
+
+- Ruff lint check passed.
+- Ruff formatting check passed.
+
+Pre-commit hooks configured:
+
+- Trailing whitespace check
+- End-of-file fixer
+- YAML and TOML validation
+- Large-file check
+- Private-key detection
+- Ruff lint and formatting
+- Secret detection
+
+### Poe tasks and Makefile
+
+Poe tasks provide project commands for development, Docker Compose, tests, coverage, migrations, and sample-data loading.
+
+A Makefile also provides shortcuts that delegate to Poe tasks. GNU Make is not installed in the current Windows environment, so use `uv run poe <task>` directly.
+
+### Git hygiene
+
+The `.gitignore` excludes:
+
+- Python bytecode and cache directories
+- `.venv`
+- `.env` files, except `.env.example`
+- Raw data
+- Coverage output
+- Editor and operating-system files
+
+The `.coverage` file is generated test output and should not be committed.

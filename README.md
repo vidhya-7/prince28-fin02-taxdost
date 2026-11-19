@@ -1,16 +1,18 @@
 # TaxDost
 
-Helps a salaried first-jobber choose the old or new tax regime and prepare for filing, citing the right Act for the right year.
+TaxDost is a tax preparation assistant for salaried individuals. It helps first-time taxpayers compare the old and new tax regimes and understand filing requirements with references to the applicable income-tax laws.
 
-**Status:** Day 1 foundation (FastAPI skeleton, quality gates). Live URL from Day 5.
+**Status:** Day 04 — Docker environment, database migrations, automated tests, and quality checks configured.
 
 ## Who it's for
 
-First-job software engineer in Chennai earning about Rs 9 lakh a year, filing an income tax return for the first time.
+A first-job software engineer in Chennai earning about Rs 9 lakh a year and filing an income tax return for the first time.
 
 ## The problem
 
-A first-time taxpayer may find it difficult to understand which tax regime is better and which deductions they can claim. Tax rules, deductions, tax slabs and filing requirements can change depending on the financial year. The transition from the Income-tax Act 1961 to the Income-tax Act 2025 makes it even more confusing because section numbers and applicable provisions differ. TaxDost aims to simplify this process by comparing both regimes and providing reliable explanations with references to the relevant tax laws.
+A first-time taxpayer may find it difficult to understand which tax regime is better and which deductions they can claim. Tax rules, deductions, tax slabs, and filing requirements can change depending on the financial year.
+
+The transition from the Income-tax Act 1961 to the Income-tax Act 2025 makes this more confusing because section numbers and applicable provisions differ. TaxDost aims to simplify this process by comparing both regimes and providing reliable explanations with references to the relevant tax laws.
 
 ## Data sources
 
@@ -18,11 +20,12 @@ Income-tax Act 1961, Income-tax Act 2025, Income-tax Rules, CBDT circulars and n
 
 - https://incometaxindia.gov.in/
 - https://www.incometax.gov.in/iec/foportal/
-- Terms: Public government documents. Cite Act, section and year.
+
+Terms: Public government documents. Cite the Act, section, and year.
 
 ## Hardest problem (my interview story)
 
-Two Acts at once: answers must pick the Act by year, map old and new section numbers, and compute tax under both regimes in code (slabs, rebate, standard deduction) instead of letting the LLM do arithmetic.
+Two Acts at once: answers must select the applicable Act by year, map old and new section numbers, and compute tax under both regimes in code (slabs, rebate, standard deduction) instead of letting an LLM perform the arithmetic.
 
 ## Signature feature
 
@@ -32,19 +35,170 @@ Regime calculator: enter salary and deductions and see tax under both regimes wi
 
 Tax computed exactly for 100% of 30 test profiles; correct section citations for 90%+ of 40 questions.
 
-## Run it locally
+## Tech stack
+
+- Python 3.12
+- FastAPI
+- PostgreSQL with pgvector
+- Redis
+- SQLAlchemy and Alembic
+- Docker and Docker Compose
+- pytest and pytest-cov
+- Ruff
+- Poe the Poet
+- pre-commit
+
+## Run with Docker Compose
+
+### Requirements
+
+- Docker Desktop with Docker Compose
+- Git
+- Python 3.12
+- uv
+
+### Clone the repository
+
+```bash
+git clone https://github.com/vidhya-7/prince28-fin02-taxdost.git
+cd prince28-fin02-taxdost
+```
+
+
+### Start the application
+
+```bash
+uv run poe up
+```
+
+This builds the application image and starts:
+
+- PostgreSQL with pgvector
+- Redis
+- Database migration and sample-data loading service
+- FastAPI application
+
+Check service status:
+
+```bash
+docker compose ps
+```
+
+### Access the application
+
+- API documentation: http://localhost:8000/docs
+- Health endpoint: http://localhost:8000/health
+
+### View logs
+
+```bash
+uv run poe logs
+```
+
+### Stop the services
+
+```bash
+uv run poe down
+```
+
+### Reset the database
+
+```bash
+uv run poe reset
+```
+
+**Warning:** Reset removes the PostgreSQL Docker volume and permanently deletes its local database data.
+
+## Local development
+
+Install dependencies:
 
 ```bash
 uv sync
-cp .env.example .env   # Windows: copy .env.example .env
-uv run uvicorn taxdost.api.main:create_app --factory --reload
 ```
 
-Then open http://localhost:8000/docs
+Create your environment file:
 
-## Checks
+```powershell
+Copy-Item .env.example .env
+```
+
+Run the development server:
 
 ```bash
-uv run pytest
-uv run ruff check .
+uv run poe dev
 ```
+
+The local API requires a reachable PostgreSQL database and the appropriate environment configuration.
+
+## Database operations
+
+Apply migrations:
+
+```bash
+uv run poe migrate
+```
+
+Load sample data:
+
+```bash
+uv run poe seed
+```
+
+## Tests and coverage
+
+Run unit tests:
+
+```bash
+uv run poe test
+```
+
+Run integration tests:
+
+```bash
+uv run poe test-integration
+```
+
+Run tests with coverage:
+
+```bash
+uv run poe cov
+```
+
+Integration tests require the PostgreSQL test database from Docker Compose to be available.
+
+## Code quality
+
+Run Ruff lint and formatting checks:
+
+```bash
+uv run poe lint
+```
+
+Pre-commit hooks are configured to check:
+
+- Trailing whitespace
+- End-of-file formatting
+- YAML and TOML validity
+- Large files
+- Private keys
+- Ruff linting and formatting
+- Potential secrets
+
+## Available Poe tasks
+
+| Command | Purpose |
+|---|---|
+| `uv run poe dev` | Start the local development server |
+| `uv run poe up` | Build and start Docker services |
+| `uv run poe down` | Stop Docker services |
+| `uv run poe logs` | Follow Docker service logs |
+| `uv run poe reset` | Remove Docker services and volumes |
+| `uv run poe test` | Run unit tests |
+| `uv run poe test-integration` | Run integration tests |
+| `uv run poe cov` | Run tests with coverage |
+| `uv run poe lint` | Run lint and formatting checks |
+| `uv run poe migrate` | Apply database migrations |
+| `uv run poe seed` | Load sample records |
+
+A Makefile is also included for shortcut commands on systems with GNU Make installed. On Windows, Poe commands can be used directly.
