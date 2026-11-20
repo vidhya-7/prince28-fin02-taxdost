@@ -195,3 +195,27 @@ The `.gitignore` excludes:
 - Editor and operating-system files
 
 The `.coverage` file is generated test output and should not be committed.
+
+## D05 · CI/CD and going live
+
+- Live URL: https://taxdost.onrender.com
+
+### Where my secrets live
+- Neon string: GitHub Secret DATABASE_URL + Render environment. Not in Git, not in the image.
+- Render deploy hook: GitHub Secret RENDER_DEPLOY_HOOK only.
+
+### Monitoring
+- UptimeRobot checks /health every 5 minutes; alerts go to my email.
+- One thing that would make my live app faster on its first request: Render's free instance may spin down after inactivity, so the first request can be slower while it starts up.
+
+### Rollback drill
+- Rolled back to sha `b9ff59fe116de1bfaacb7067e8fd7d2319d21b00`: CD #3, smoke test passed (44 seconds).
+- Rolled forward to sha `3c35da6fa6f418fadea63063d393a4b0117f02ab`: CD #4, smoke test passed (42 seconds).
+- During the rollback, the database stayed on the newer schema. Why is that safe here?
+  The rollback changes only the application image; it does not reverse database migrations. The older application remains compatible with the current database schema.
+
+  ### Deployment links
+
+- First deploy that ran by itself (CD #1): https://github.com/vidhya-7/prince28-fin02-taxdost/actions/runs/44710029695
+- Rollback (CD #3): https://github.com/vidhya-7/prince28-fin02-taxdost/actions/runs/44730158800
+- Roll-forward (CD #4): https://github.com/vidhya-7/prince28-fin02-taxdost/actions/runs/44730660905
