@@ -8,8 +8,11 @@ authors = [
 ]
 requires-python = ">=3.12"
 dependencies = [
+    "alembic>=1.20.1",
+    "asyncpg>=0.32.0",
     "fastapi>=0.163.1",
     "pydantic-settings>=2.16.3",
+    "sqlalchemy[asyncio]>=2.1.9",
     "uvicorn[standard]>=0.54.0",
 ]
 
@@ -22,12 +25,18 @@ build-backend = "uv_build"
 [dependency-groups]
 dev = [
     "httpx>=0.28.1",
+    "poethepoet>=0.49.0",
     "pre-commit>=4.7.0",
     "pytest>=9.2.0",
+    "pytest-asyncio>=1.5.0",
+    "pytest-cov>=7.1.0",
     "ruff>=0.17.5",
 ]
 
 [tool.ruff]
+# Alembic writes these files; we review them but don't restyle them.
+extend-exclude = ["migrations/versions"]
+
 line-length = 100
 target-version = "py312"
 
@@ -37,4 +46,33 @@ select = ["E", "F", "I", "B", "UP", "SIM"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q"
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
 filterwarnings = ["ignore:Using `httpx` with `starlette.testclient`"]
+
+[tool.coverage.run]
+source = ["taxdost"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+
+[tool.poe.tasks]
+dev = "uvicorn taxdost.api.main:create_app --factory --reload --no-access-log"
+lint = ["_ruff_check", "_ruff_format"]
+_ruff_check = "ruff check ."
+_ruff_format = "ruff format --check ."
+test = "pytest tests/unit"
+cov = "pytest --cov --cov-report=term-missing"
+migrate = "alembic upgrade head"
+seed = "python scripts/load_db.py"
+up = "docker compose up -d --build"
+down = "docker compose down"
+logs = "docker compose logs -f"
+reset = "docker compose down -v"
+
+[tool.poe.tasks.test-integration]
+help = "Integration tests against the Postgres from docker compose (run `make up` first)"
+cmd = "pytest tests/integration"
+env.TEST_DATABASE_URL.default = "postgresql://app:app@localhost:5433/app_test" # pragma: allowlist secret
