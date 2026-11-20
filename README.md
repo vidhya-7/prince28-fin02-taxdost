@@ -1,8 +1,11 @@
 # TaxDost
 
+[![CI](https://github.com/vidhya-7/prince28-fin02-taxdost/actions/workflows/ci.yml/badge.svg)](https://github.com/vidhya-7/prince28-fin02-taxdost/actions/workflows/ci.yml) [![Live](https://img.shields.io/website?url=https%3A%2F%2Ftaxdost.onrender.com%2Fhealth&label=live)](https://taxdost.onrender.com/docs) [![Uptime (30 days)](https://img.shields.io/uptimerobot/ratio/m804746134-2e9a989f95f0c9d4c84c19dc)](https://taxdost.onrender.com/health)
+
+**Live:** [https://taxdost.onrender.com](https://taxdost.onrender.com) · [API docs](https://taxdost.onrender.com/docs) · [health](https://taxdost.onrender.com/health)
 TaxDost is a tax preparation assistant for salaried individuals. It helps first-time taxpayers compare the old and new tax regimes and understand filing requirements with references to the applicable income-tax laws.
 
-**Status:** Day 04 — Docker environment, database migrations, automated tests, and quality checks configured.
+**Status:** Week 1 complete · live at https://taxdost.onrender.com
 
 ## Who it's for
 
