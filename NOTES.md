@@ -219,3 +219,39 @@ The `.coverage` file is generated test output and should not be committed.
 - First deploy that ran by itself (CD #1): https://github.com/vidhya-7/prince28-fin02-taxdost/actions/runs/44710029695
 - Rollback (CD #3): https://github.com/vidhya-7/prince28-fin02-taxdost/actions/runs/44730158800
 - Roll-forward (CD #4): https://github.com/vidhya-7/prince28-fin02-taxdost/actions/runs/44730660905
+
+## D06 · Collecting the corpus
+
+- Start target: Salary-related sections of both Acts + ITR-1/ITR-2 instructions + FAQs
+- Collected today: **5 files, 24 pages, 3.2 MB**
+- Doors used: **URL list**
+
+### Licence check
+
+| Source | Licence or terms, in my words | May I show full text in answers? |
+|---|---|---|
+| incometax.gov.in / incometaxindia.gov.in | Public government documents; cite the Act, section and year. | Not confirmed; show relevant excerpts and link to the original document until reuse terms are verified. |
+
+### robots.txt
+
+- Site: incometaxindia.gov.in. Its robots.txt says: **The downloader checked robots.txt and respected the site's crawling rules. Exact rules have not been recorded.**
+- Was anything blocked for my bot? **No robots.txt blocks were reported. Five URLs returned HTTP 403 Forbidden. I left them unavailable and did not bypass the restriction.**
+
+### Kill and resume
+
+- Run 1: I did not press Ctrl+C; the run completed with 5 downloaded and 5 failed.
+- Run 2: downloaded=0 skipped=5 failed=5
+- Run 3: downloaded=0 skipped=5 failed=5
+
+### Capacity (from docs/CAPACITY.md)
+
+- Tokens per page, measured: **750**
+- Full corpus: **4.50 M tokens, 12,937 chunks, embedding about Rs 74, vectors 40 MB**
+- The number that surprised me most, and why (2 lines):
+
+  The full corpus is estimated to need only about Rs 74 for one-time embedding.
+  The estimated vector storage is also relatively small at 40 MB.
+
+### One thing that went wrong today, and how I fixed it
+
+Five URLs returned HTTP 403 Forbidden. I respected the server restrictions and continued with the five successfully downloaded documents. The dataset report was generated successfully.
