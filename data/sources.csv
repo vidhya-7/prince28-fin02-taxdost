@@ -1,0 +1,14 @@
+# Sources for TaxDost. One row per file to download.
+# Start target: Salary-related sections of both Acts + ITR-1/ITR-2 instructions + FAQs
+url,source,licence,title
+
+https://www.incometaxindia.gov.in/documents/d/guest/income_tax_act_2025_as_amended_by_fa_act_2026-pdf,incometax,Public government document; cite Act section and year,Income Tax Act 2025
+https://wm.incometaxindia.gov.in/w/section-15-64,incometax,Public government document; cite Act section and year,Income Tax Act 1961 Section 15 Salaries
+https://wm.incometaxindia.gov.in/w/section-16-220,incometax,Public government document; cite Act section and year,Income Tax Act 2025 Section 16 Salary
+https://wm.incometaxindia.gov.in/w/section-16-64,incometax,Public government document; cite Act section and year,Income Tax Act 1961 Section 16 Deductions
+https://wm.incometaxindia.gov.in/w/section-17-64,incometax,Public government document; cite Act section and year,Income Tax Act 1961 Section 17 Salary Definition
+https://www.incometaxindia.gov.in/documents/d/guest/itr-1-2026-eng-pdf,incometax,Public government document; cite form and assessment year,ITR 1 2026
+https://www.incometaxindia.gov.in/documents/d/guest/itr-2-2026-eng-pdf,incometax,Public government document; cite form and assessment year,ITR 2 2026
+https://www.incometaxindia.gov.in/income-from-salary,incometax,Public government information; cite Income Tax Department page,Income from Salary Guide
+https://www.incometaxindia.gov.in/en/frequently-asked-questions,incometax,Public government information; cite Income Tax Department FAQ,Income Tax FAQs
+https://wm.incometaxindia.gov.in/w/employees-benefits-allowable,incometax,Public government information; cite Income Tax Department page,Employees Benefits Allowable
