@@ -238,12 +238,17 @@ The `.coverage` file is generated test output and should not be committed.
 - Was anything blocked for my bot? **No robots.txt blocks were reported. Five URLs returned HTTP 403 Forbidden. I left them unavailable and did not bypass the restriction.**
 
 ### Kill and resume
-Kill-and-resume test:
-Not tested yet. Repeated-run skipping was tested, but stopping midway and resuming was not tested.
 
-- Run 1: I did not press Ctrl+C; the run completed with 5 downloaded and 5 failed.
-- Run 2: downloaded=0 skipped=5 failed=5
-- Run 3: downloaded=0 skipped=5 failed=5
+**Kill-and-resume test: PASSED using a simulated website with httpx.MockTransport.**
+
+The test used a separate temporary folder:
+`%TEMP%\taxdost-d06-resume-check`
+
+- Run 1 (interrupted with Ctrl+C): 3 files completed; 4 other downloads were in progress and cancelled.
+- Run 2 (resumed): downloaded=5, skipped=3, blocked=0, failed=0.
+- Final verification: 8 manifest records, 8 downloaded files, 0 leftover `.part` files.
+
+This confirms that completed files are skipped and missing files are downloaded after interruption. The test used a simulated website, not the live Income Tax website.
 
 ### Capacity (from docs/CAPACITY.md)
 
