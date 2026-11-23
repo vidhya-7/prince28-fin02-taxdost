@@ -51,7 +51,9 @@ Tax computed exactly for 100% of 30 test profiles; correct section citations for
 - Poe the Poet
 - pre-commit
 
-## Run with Docker Compose
+## Run locally in one command
+
+### Run with Docker Compose
 
 ### Requirements
 
