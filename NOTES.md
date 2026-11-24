@@ -262,3 +262,45 @@ This confirms that completed files are skipped and missing files are downloaded 
 ### One thing that went wrong today, and how I fixed it
 
 Five URLs returned HTTP 403 Forbidden. I respected the server restrictions and continued with the five successfully downloaded documents. The dataset report was generated successfully.
+
+## D07 · Parser comparison
+
+<!-- parsers:start -->
+| File | Parser comparison | Pages | trafilatura result | Strip-tags result | Time | Better, why |
+|---|---|---|---|---|---|---|
+| tax-rates-and-computation-c0c67447.html | trafilatura / strip tags | 9 | 26,706 chars, 0 headings, 0 tables | 51,147 chars, 0 headings, 0 tables | 0.43 s / 0.02 s | trafilatura: cleaner extraction with less unwanted content. |
+| employees-benefits-allowable-434bd290.html | trafilatura / strip tags | 6 | 39,526 chars, 1 headings, 0 tables | 44,168 chars, 0 headings, 0 tables | 0.18 s / 0.02 s | trafilatura: detects a heading and extracts cleaner content. |
+| income-from-salary-f1f94d83.html | trafilatura / strip tags | 6 | 38,029 chars, 1 headings, 0 tables | 41,437 chars, 0 headings, 0 tables | 0.20 s / 0.02 s | trafilatura: detects a heading and removes unnecessary webpage content. |
+| section-17-64-4c784750.html | trafilatura / strip tags | 5 | 12,370 chars, 0 headings, 13 tables | 17,375 chars, 0 headings, 0 tables | 0.10 s / 0.01 s | trafilatura: preserves 13 tables; strip-tags loses table structure. |
+| section-16-220-e919c493.html | trafilatura / strip tags | 1 | 1,291 chars, 0 headings, 0 tables | 5,649 chars, 0 headings, 0 tables | 0.09 s / 0.01 s | trafilatura: extracts less unwanted content. |
+| section-15-64-c51641da.html | trafilatura / strip tags | 1 | 1,105 chars, 1 headings, 0 tables | 5,966 chars, 0 headings, 0 tables | 0.09 s / 0.01 s | trafilatura: detects a heading and extracts cleaner content. |
+| is-standard-deduction-applicable-to-all-the-sala | trafilatura / strip tags | 1 | 877 chars, 1 headings, 0 tables | 5,301 chars, 0 headings, 0 tables | 0.09 s / 0.01 s | trafilatura: detects a heading and removes extra webpage content. |
+| section-16-64-f5bbcc50.html | trafilatura / strip tags | 1 | 1,245 chars, 1 headings, 0 tables | 6,198 chars, 0 headings, 0 tables | 0.07 s / 0.01 s | trafilatura: detects a heading and extracts cleaner content. |
+| itr-2-um-8f2d0d83.html | trafilatura / strip tags | 6 | 15,039 chars, 5 headings, 0 tables | 21,224 chars, 0 headings, 0 tables | 1.19 s / 0.01 s | trafilatura: preserves 5 headings and cleaner document structure. |
+| itr1-faq-e1a62604.html | trafilatura / strip tags | 6 | 16,617 chars, 34 headings, 0 tables | 23,337 chars, 0 headings, 0 tables | 0.06 s / 0.01 s | trafilatura: detects 34 headings and preserves useful structure. |
+<!-- parsers:end -->
+
+### D07 · Parsing my corpus
+
+- Manifest files: 28
+- Downloaded files: 13
+- Successfully parsed files: 13
+- Parsing failures: 0
+- Pages saved in PostgreSQL: 53
+- Parsing coverage: 100% of downloaded files (13/13).
+- 15 files could not be downloaded because they were failed or blocked.
+
+### What I observed
+
+- The ITR-1 FAQ contains 34 detected headings.
+- Tax Rates and Computation has 9 pages, but its heading paths are empty because section labels are not detected as Markdown headings.
+- Section 17 preserves 13 tables, but some table headers are generic.
+- No downloaded PDFs were available for PDF parser comparison.
+
+### My parser choice
+
+I chose trafilatura for HTML parsing because it extracts cleaner content, detects headings, and preserves tables. Simple tag stripping is faster but includes unnecessary webpage content and loses document structure.
+
+### Limitations
+
+Some legal section headings are represented as bold or ordinary text rather than semantic headings. These are not detected by the current heading extraction logic.
