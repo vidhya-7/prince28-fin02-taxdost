@@ -1,14 +1,16 @@
 # Sources for TaxDost. One row per file to download.
 # Start target: Salary-related sections of both Acts + ITR-1/ITR-2 instructions + FAQs
 url,source,licence,title
-
-https://www.incometaxindia.gov.in/documents/d/guest/income_tax_act_2025_as_amended_by_fa_act_2026-pdf,incometax,Public government document; cite Act section and year,Income Tax Act 2025
+https://www.incometax.gov.in/iec/foportal/newdownloads/income-tax-act-2025,incometax,Public government information; cite Income Tax Department,Income Tax Act 2025 Overview
 https://wm.incometaxindia.gov.in/w/section-15-64,incometax,Public government document; cite Act section and year,Income Tax Act 1961 Section 15 Salaries
 https://wm.incometaxindia.gov.in/w/section-16-220,incometax,Public government document; cite Act section and year,Income Tax Act 2025 Section 16 Salary
 https://wm.incometaxindia.gov.in/w/section-16-64,incometax,Public government document; cite Act section and year,Income Tax Act 1961 Section 16 Deductions
 https://wm.incometaxindia.gov.in/w/section-17-64,incometax,Public government document; cite Act section and year,Income Tax Act 1961 Section 17 Salary Definition
-https://www.incometaxindia.gov.in/documents/d/guest/itr-1-2026-eng-pdf,incometax,Public government document; cite form and assessment year,ITR 1 2026
-https://www.incometaxindia.gov.in/documents/d/guest/itr-2-2026-eng-pdf,incometax,Public government document; cite form and assessment year,ITR 2 2026
-https://www.incometaxindia.gov.in/income-from-salary,incometax,Public government information; cite Income Tax Department page,Income from Salary Guide
-https://www.incometaxindia.gov.in/en/frequently-asked-questions,incometax,Public government information; cite Income Tax Department FAQ,Income Tax FAQs
+https://www.incometax.gov.in/iec/foportal/newdownloads/itr/itr-UM,incometax,Public government information; cite ITR-1 user manual AY 2026-27,ITR-1 Online User Manual
+https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/file-itr-2-online/itr-2-UM,incometax,Public government information; cite ITR-2 user manual AY 2026-27,ITR-2 Online User Manual
+https://wm.incometaxindia.gov.in/w/income-from-salary,incometax,Public government information; cite Income Tax Department,Income from Salary Guide
+https://wm.incometaxindia.gov.in/w/is-standard-deduction-applicable-to-all-the-salaried-person-whether-he-is-an-employee-of-central-or-state-government-,incometax,Public government FAQ; cite Income Tax Department,Salary Income FAQ Standard Deduction
+https://wm.incometaxindia.gov.in/w/tax-rates-and-computation,incometax,Public government information; cite Income Tax Department,Tax Rates and Computation
 https://wm.incometaxindia.gov.in/w/employees-benefits-allowable,incometax,Public government information; cite Income Tax Department page,Employees Benefits Allowable
+https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/ITR1-FAQ,incometax,Public government information; cite ITR-1 FAQ AY 2026-27,ITR-1 FAQs
+https://www.incometax.gov.in/iec/foportal/help/all-topics/e-filing-services/file-itr-2-online,incometax,Public government information; cite ITR-2 FAQ AY 2026-27,ITR-2 FAQs
