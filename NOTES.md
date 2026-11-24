@@ -296,6 +296,7 @@ Five URLs returned HTTP 403 Forbidden. I respected the server restrictions and c
 - Tax Rates and Computation has 9 pages, but its heading paths are empty because section labels are not detected as Markdown headings.
 - Section 17 preserves 13 tables, but some table headers are generic.
 - No downloaded PDFs were available for PDF parser comparison.
+- The Tax Rates and Computation pages contain flattened table content. Some table rows and columns run together, so the original table structure is not fully preserved.
 
 ### My parser choice
 
