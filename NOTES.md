@@ -305,3 +305,45 @@ I chose trafilatura for HTML parsing because it extracts cleaner content, detect
 ### Limitations
 
 Some legal section headings are represented as bold or ordinary text rather than semantic headings. These are not detected by the current heading extraction logic.
+
+### D08 · What the model does without my documents
+
+- Question 6 ("Has my refund been credited?"): Yes, it admitted it cannot know.
+- Its exact words: "I am not sure. As TaxDost, I help you understand tax rules and compare regimes, but I cannot access your personal tax account or check the status of your refund."
+- Off-topic question ("Who won the 2011 cricket world cup?"): Declined in one sentence.
+- Exact response: "That question is outside this product's subject."
+
+- Wrong detail:
+  Question: What is the standard deduction under the new tax regime for FY 2024-25?
+  TaxDost said: ₹50,000.
+  Correct answer: ₹75,000.
+
+- Second known-answer question:
+  Question: What is the standard deduction under the old tax regime for FY 2024-25?
+  TaxDost said: ₹50,000.
+  Correct answer: ₹50,000.
+  Result: Correct.
+
+- With primary broken: provider Groq, fallback Yes.
+- First words: 2.22 seconds (first fallback request).
+- Gemini error stopped appearing at request 4.
+- Request 4 went directly to Groq because the circuit was open.
+- Request 5 retried Gemini (half-open test), failed, and used Groq.
+
+### D08 · Usage report
+
+- Total calls: 19
+- Errors: 5
+- Fallbacks: 6
+- Input tokens: 3,030
+- Output tokens: 1,818
+- Estimated cost: ₹0.2323
+
+### D08 · Database verification
+
+- SQL query confirmed that LLM calls are stored in PostgreSQL.
+- Invalid Gemini model returned HTTP 404.
+- Groq successfully handled requests after Gemini failures.
+- A Gemini ConnectTimeout was also recorded, followed by a successful Groq fallback.
+- Successful Gemini calls were recorded with fallback_used = false.
+- Failed provider calls recorded zero tokens and zero cost.
