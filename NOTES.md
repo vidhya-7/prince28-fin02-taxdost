@@ -347,3 +347,48 @@ Some legal section headings are represented as bold or ordinary text rather than
 - A Gemini ConnectTimeout was also recorded, followed by a successful Groq fallback.
 - Successful Gemini calls were recorded with fallback_used = false.
 - Failed provider calls recorded zero tokens and zero cost.
+
+## D09 · Prompt versions compared
+
+<!-- prompts:start -->
+
+| Prompt version | Correct | Accuracy | Invalid replies | Avg tokens in |
+|---|---|---|---|---|
+| classify_v1 | 15/20 | 75% | 0 | 46 |
+| classify_v2 | 20/20 | 100% | 0 | 174 |
+| classify_v3 | 20/20 | 100% | 0 | 246 |
+| classify_v4 | 19/20 | 95% | 0 | 199 |
+
+<!-- prompts:end -->
+
+### D09 · Version 4 experiment
+
+- Best versions: classify_v2 and classify_v3, both achieved 100% accuracy.
+- classify_v2 is more efficient, averaging 174 input tokens compared with 246 for v3.
+- classify_v4 added an explicit instruction to treat user questions as untrusted input.
+- v4 achieved 95% accuracy and misclassified test question 4 as personal instead of docs.
+- The question provides salary, rent and investment details directly, so it can be answered using tax documents and the supplied information.
+- The additional instruction did not improve accuracy. Keep v2 as the preferred prompt.
+- No prompt leakage was reported.
+
+### D09 · Extraction run
+
+- Prompt version: `extract_v1`
+- Documents processed: 13
+- Successful: 13
+- Repaired: 2
+- Failed: 0
+- Total input tokens: 30,099
+- Total output tokens: 2,792
+- Estimated cost: ₹1.521
+- Most common validation issue: `section` returned more than 8 values.
+- Fix: The extractor requested corrected JSON and successfully validated both repaired responses.
+- Database verification: 13 successful, 0 failed.
+- Manual verification: Compared Section 16 and Section 17 against their original Income-tax Department pages.
+- Factual issue found: Both pages display Year 2025, but the extractor returned year=null.
+- Other checked fields: document kind, language, act, section references, topics and listed amounts were supported by the source text.
+- Improvement identified: Update the extraction prompt to explicitly inspect displayed document metadata such as Year.
+
+### One thing that went wrong today, and how I fixed it
+
+Two documents returned more than the allowed 8 section values. The Pydantic validation rejected them, and the extractor retried with a repair instruction. Both documents were successfully saved after correction.

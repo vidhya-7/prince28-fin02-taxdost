@@ -17,3 +17,4 @@ data/raw/
 .coverage
 .coverage.*
 htmlcov/
+eval/cache/
