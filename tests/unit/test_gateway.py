@@ -239,11 +239,13 @@ async def test_provider_sends_openai_request_and_reads_reply():
         "test", "https://llm.test/v1/", "secret", "test-model", client=client
     )
 
-    reply = await provider.generate(MESSAGES)
+    response_format = {"type": "json_object"}
+    reply = await provider.generate(MESSAGES, response_format=response_format)
 
     assert seen["url"] == "https://llm.test/v1/chat/completions"
     assert seen["authorization"] == "Bearer secret"
     assert seen["body"]["model"] == "test-model"
+    assert seen["body"]["response_format"] == response_format
     assert reply.text == "Provider answer"
     assert reply.tokens_in == 5
     await client.aclose()
