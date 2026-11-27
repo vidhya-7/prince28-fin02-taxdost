@@ -37,13 +37,13 @@ class Document(Base):
     __tablename__ = "documents"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    external_id: Mapped[str] = mapped_column(String(64), unique=True)  # your record "id"
+    external_id: Mapped[str] = mapped_column(String(64), unique=True)
     title: Mapped[str] = mapped_column(Text)
     source_url: Mapped[str | None] = mapped_column(Text)
     licence: Mapped[str | None] = mapped_column(String(200))
     doc_type: Mapped[str] = mapped_column(String(50), server_default="record")
     published_on: Mapped[date | None]
-    sha256: Mapped[str] = mapped_column(String(64), index=True)  # fingerprint of the content
+    sha256: Mapped[str] = mapped_column(String(64), index=True)
     metadata_: Mapped[dict[str, Any]] = mapped_column(
         "metadata", JSONB, server_default=text("'{}'::jsonb")
     )
@@ -129,3 +129,41 @@ class LlmCall(Base):
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), index=True
     )
+
+
+# Day 10: Ingestion queue tables
+
+
+class IngestJob(Base):
+    """One request to ingest a batch of documents. Its items carry the real state."""
+
+    __tablename__ = "ingest_jobs"
+
+    id: Mapped[str] = mapped_column(String(32), primary_key=True)
+    requested: Mapped[int]
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+    items: Mapped[list["IngestItem"]] = relationship(
+        back_populates="job", cascade="all, delete-orphan"
+    )
+
+
+class IngestItem(Base):
+    """One document in a batch: queued -> running -> done / skipped / failed."""
+
+    __tablename__ = "ingest_items"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    job_id: Mapped[str] = mapped_column(
+        ForeignKey("ingest_jobs.id", ondelete="CASCADE"), index=True
+    )
+    record: Mapped[dict[str, Any]] = mapped_column(JSONB)
+    status: Mapped[str] = mapped_column(String(10), server_default="queued", index=True)
+    attempts: Mapped[int] = mapped_column(server_default="0")
+    error: Mapped[str] = mapped_column(Text, server_default="")
+    pages: Mapped[int] = mapped_column(server_default="0")
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now(), onupdate=func.now()
+    )
+
+    job: Mapped[IngestJob] = relationship(back_populates="items")
