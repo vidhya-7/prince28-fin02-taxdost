@@ -415,3 +415,7 @@ Two documents returned more than the allowed 8 section values. The Pydantic vali
 
 ### One thing that went wrong today, and how I fixed it
 - The ingest report script was missing. I created `scripts/ingest_report.py`, ran it, and generated `docs/INGEST_REPORT.md`.
+
+### Live ingestion
+- TaxDost on Render: 5 of 5 documents done, 0 failed. 74 pages processed in 27 seconds.
+- A request without the token gets status 401.
