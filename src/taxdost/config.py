@@ -11,7 +11,11 @@ from taxdost.db.url import to_asyncpg_url
 
 
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        extra="ignore",
+    )
 
     app_name: str = "taxdost"
     # No defaults on purpose: if these are missing, the app refuses to start (fail fast).
@@ -36,6 +40,16 @@ class Settings(BaseSettings):
     llm_timeout_seconds: float = 30.0
     usd_inr: float = 95.0
     prompts_dir: Path = Path("prompts")
+
+    # Queue and worker (Day 10)
+    redis_url: str = "redis://localhost:6379"
+    manifest_file: Path = Path("data/manifest.jsonl")
+    admin_token: str = ""
+    worker_in_api: bool = False
+    ingest_concurrency: int = 2
+    ingest_rpm: float = 12.0
+    ingest_job_timeout: int = 60
+    ingest_max_tries: int = 3
 
     @field_validator("database_url")
     @classmethod

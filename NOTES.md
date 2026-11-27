@@ -392,3 +392,26 @@ Some legal section headings are represented as bold or ordinary text rather than
 ### One thing that went wrong today, and how I fixed it
 
 Two documents returned more than the allowed 8 section values. The Pydantic validation rejected them, and the extractor retried with a repair instruction. Both documents were successfully saved after correction.
+
+# Day 10
+- docs/CAPACITY.md said: 81 pages, 60,554 tokens. docs/INGEST_REPORT.md says: 180 pages, 153,198 tokens.
+- The current corpus has 99 more pages and 92,644 more estimated tokens. The corpus contains more extracted content than Monday's starting measurement.
+
+### D10 · Queue and worker
+- First run: 10 documents queued, finished in 51 s. Done 10, skipped 0, failed 0
+- Pace: 5.1 s per document (INGEST_RPM = 12, INGEST_CONCURRENCY = 2)
+
+### Kill test
+- Queued: 20. At the kill: queued 13, running 2, done 5, failed 0
+- After the new worker: done 20 + skipped 0 + failed 0 = 20
+- Documents in the database: 27, different ids: 27
+- The interrupted items came back after about 299 seconds (5 minutes). Why that long: ARQ retry delay before processing interrupted jobs.
+- Why nothing was doubled: The database checks the external ID, so the same document is not inserted twice.
+
+### Dead-letter list
+| Stage (parse / extract / download / gave up) | Items | What I did |
+|---|---|---|
+| None | 0 | No failed items; no retry needed |
+
+### One thing that went wrong today, and how I fixed it
+- The ingest report script was missing. I created `scripts/ingest_report.py`, ran it, and generated `docs/INGEST_REPORT.md`.
